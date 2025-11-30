@@ -181,7 +181,7 @@ def generar_respuesta(mensaje):
     
     5️⃣ Ver promociones 🎁
     
-    6️⃣ Dirección y horario 📍
+    6️⃣ Dirección y horario 📍"""
     
 # ---------------------------------------------------------
 # 4. INTERFAZ DE USUARIO (STREAMLIT)
@@ -229,6 +229,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
