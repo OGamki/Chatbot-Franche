@@ -14,8 +14,8 @@ st.set_page_config(page_title="Franche Travel Bot", page_icon="✈️")
 def conectar_woocommerce():
     return API(
         url="https://viajoconfranche.com",
-        consumer_key="ck_TU_CLAVE_AQUI",      # <--- ¡PEGA TU CLAVE DE CLIENTE AQUÍ!
-        consumer_secret="cs_TU_SECRETO_AQUI", # <--- ¡PEGA TU CLAVE SECRETA AQUÍ!
+        consumer_key="ck_a96e205ae6ea3c7ce04739c9d81aaa95188bb7d2",      # <--- ¡PEGA TU CLAVE DE CLIENTE AQUÍ!
+        consumer_secret="cs_9d124ef703d7952dc62727bf029e9ad0288c0646", # <--- ¡PEGA TU CLAVE SECRETA AQUÍ!
         version="wc/v3",
         timeout=20
     )
@@ -176,4 +176,5 @@ if prompt := st.chat_input("Escribe aquí..."):
     # 3. Mostrar bot
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
+
         st.markdown(respuesta_bot)
