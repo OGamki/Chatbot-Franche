@@ -8,15 +8,29 @@ import random
 # ---------------------------------------------------------
 st.set_page_config(page_title="Franche Travel Bot", page_icon="✈️")
 
-# ESTE ES EL CÓDIGO QUE BORRA LA PARTE DE ABAJO Y ARRIBA
 hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            .stDeployButton {display:none;}
-            </style>
-            """
+<style>
+    /* Ocultar el menú de hamburguesa arriba a la derecha */
+    #MainMenu {visibility: hidden !important; display: none !important;}
+    
+    /* Ocultar el pie de página "Made with Streamlit" */
+    footer {visibility: hidden !important; display: none !important;}
+    
+    /* Ocultar la barra de colores superior */
+    header {visibility: hidden !important; display: none !important;}
+    
+    /* Ocultar elementos específicos de la versión Cloud */
+    .stAppDeployButton {display: none !important;}
+    [data-testid="stHeader"] {display: none !important;}
+    [data-testid="stToolbar"] {display: none !important;}
+    
+    /* Ajustar el espacio para que no quede un hueco arriba */
+    .block-container {
+        padding-top: 0rem !important;
+        padding-bottom: 0rem !important;
+    }
+</style>
+"""
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
@@ -190,3 +204,4 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
