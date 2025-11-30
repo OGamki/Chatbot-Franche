@@ -73,7 +73,7 @@ def obtener_tours_reales():
                 link = p['permalink']
                 
                 # CAMBIO 2: Formato de UNA sola línea (Lista compacta)
-                mensaje += f"• [{nombre}]({link}) — *{precio}*\n"
+                mensaje += f"• [{nombre}]({link}) — *{precio}*\n\n"
             
             mensaje += "\n👉 *Haz clic en el nombre para ver más detalles.*"
             return mensaje
@@ -229,6 +229,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
