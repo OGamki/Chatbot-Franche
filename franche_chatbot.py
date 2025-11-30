@@ -92,7 +92,7 @@ def generar_respuesta(mensaje):
     if any(x in msg for x in ["1", "pasaje", "vuelo", "boleto", "hotel", "reserva"]):
         return ("✈️ **Reserva de Pasajes y Hoteles**\n\n"
                 "¡Genial! Para estas reservas necesitamos atención personalizada.\n"
-                "[Por favor escribenos y nos pondremos en contacto en breve](https://viajoconfranche.com/contacto/)"
+                "[Por favor escribenos y nos pondremos en contacto en breve](https://viajoconfranche.com/contacto/)")
 
     # --- OPCIÓN 2 y 5: TOURS Y PROMOCIONES ---
     if any(x in msg for x in ["2", "5", "tour", "full day", "viaje", "promocion", "oferta"]):
@@ -212,6 +212,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
