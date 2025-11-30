@@ -89,13 +89,13 @@ def generar_respuesta(mensaje):
     msg = mensaje.lower().strip()
 
     # --- OPCIÓN 1: PASAJES Y HOTELES ---
-    if any(x in msg for x in ["1", "pasaje", "vuelo", "boleto", "hotel", "reserva"]):
+    if any(x in msg for x in ["1", "reserva"]):
         return ("✈️ **Reserva de Pasajes y Hoteles**\n\n"
                 "¡Genial! Para estas reservas necesitamos atención personalizada.\n"
                 "[Por favor escribenos y nos pondremos en contacto en breve](https://viajoconfranche.com/contacto/)")
 
     # --- OPCIÓN 2 y 5: TOURS Y PROMOCIONES ---
-    if any(x in msg for x in ["2", "5", "tour", "full day", "viaje", "promocion", "oferta"]):
+    if any(x in msg for x in ["2", "5", "tour", "full day", "viaje", "promocion", "oferta", "pasaje", "vuelo", "boleto", "hotel"]):
         return obtener_tours_reales()
 
     # --- OPCIÓN 3: ASESOR ---
@@ -149,8 +149,8 @@ def generar_respuesta(mensaje):
     if any(x in msg for x in ["hola", "buenos dias", "buenas", "que tal", "hi", "holi"]):
         return "👋 ¡Hola! Bienvenido a Franche Travel. ¿En qué puedo ayudarte hoy?\nEscribe **'menu'** para ver las opciones."
 
-    # --- MENÚ DE AYUDA (Opción por defecto) ---
-    return """ **MENÚ PRINCIPAL**
+    if any(x in msg for x in ["menu"]):
+        return """ **MENÚ PRINCIPAL**
     
     1️⃣ Reservar pasajes o hoteles ✈️🏨
     
@@ -164,8 +164,25 @@ def generar_respuesta(mensaje):
     
     6️⃣ Dirección y horario 📍
     
-    👇 Escribe el número de la opción o tu pregunta:"""
+    👇 Escribe el número de la opción a tu pregunta:"""
 
+    # --- MENÚ DE AYUDA (Opción por defecto) ---
+    return """🤔 **Disculpa, no entendí bien tu mensaje.**
+    
+    Soy un asistente virtual en entrenamiento. Por favor elige una opción del menú:
+    
+    1️⃣ Reservar pasajes o hoteles ✈️🏨
+    
+    2️⃣ Ver tours y full days (Tienda) 🎒
+    
+    3️⃣ Hablar con un asesor 💬
+    
+    4️⃣ Redes sociales 🌐
+    
+    5️⃣ Ver promociones 🎁
+    
+    6️⃣ Dirección y horario 📍
+    
 # ---------------------------------------------------------
 # 4. INTERFAZ DE USUARIO (STREAMLIT)
 # ---------------------------------------------------------
@@ -212,6 +229,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
