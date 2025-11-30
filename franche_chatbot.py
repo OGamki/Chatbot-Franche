@@ -52,36 +52,37 @@ def conectar_woocommerce():
     )
 
 def obtener_tours_reales():
-    """Consulta la tienda y trae los productos formateados"""
+    """Consulta la tienda y trae una lista compacta"""
     try:
         wcapi = conectar_woocommerce()
-        # Traemos 10 productos publicados
-        response = wcapi.get("products", params={"per_page": 10, "status": "publish"})
+        
+        # CAMBIO 1: Traemos solo 5 productos para que el mensaje sea corto
+        response = wcapi.get("products", params={"per_page": 5, "status": "publish"})
         
         if response.status_code == 200:
             productos = response.json()
             
             if not productos:
-                return "⚠️ No encontré tours publicados en la tienda en este momento."
+                return "⚠️ No encontré tours publicados en este momento."
 
-            mensaje = "🎒 **Estos son nuestros Tours disponibles ahora mismo:**\n\n"
+            mensaje = "🎒 **Tours Destacados:**\n\n"
+            
             for p in productos:
                 nombre = p['name']
-                # Formatear precio si existe
-                precio = f"S/ {p['price']}" if p['price'] else "Consultar precio"
+                precio = f"S/ {p['price']}" if p['price'] else "Consultar"
                 link = p['permalink']
                 
-                # Diseño de la tarjeta del producto
-                mensaje += f"🌟 **{nombre}**\n💰 {precio}\n🔗 [Ver detalles y reservar]({link})\n"
-                mensaje += "---\n"
+                # CAMBIO 2: Formato de UNA sola línea (Lista compacta)
+                # Se verá así: • Machu Picchu Limeño | S/ 94.90 (Enlace clicable en el nombre)
+                mensaje += f"• [{nombre}]({link}) — *{precio}*\n"
             
+            mensaje += "\n👉 *Haz clic en el nombre para ver más detalles.*"
             return mensaje
         else:
-            return "❌ Error de conexión con la tienda. Por favor verifica las claves API."
+            return "❌ Error de conexión con la tienda."
             
     except Exception as e:
-        return f"❌ Error técnico al buscar tours: {str(e)}"
-
+        return f"❌ Error técnico: {str(e)}"
 # ---------------------------------------------------------
 # 3. CEREBRO DEL BOT (RESPUESTAS)
 # ---------------------------------------------------------
@@ -229,6 +230,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
