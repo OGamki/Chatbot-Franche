@@ -57,7 +57,7 @@ def obtener_tours_reales():
         wcapi = conectar_woocommerce()
         
         # CAMBIO 1: Traemos solo 5 productos para que el mensaje sea corto
-        response = wcapi.get("products", params={"per_page": 5, "status": "publish"})
+        response = wcapi.get("products", params={"per_page": 10, "status": "publish"})
         
         if response.status_code == 200:
             productos = response.json()
@@ -73,8 +73,7 @@ def obtener_tours_reales():
                 link = p['permalink']
                 
                 # CAMBIO 2: Formato de UNA sola línea (Lista compacta)
-                # Se verá así: • Machu Picchu Limeño | S/ 94.90 (Enlace clicable en el nombre)
-                mensaje += f"• [{nombre}]({link}) — *{precio}*\n"
+                mensaje += f"• [{nombre}]({link}) — *{precio}*\n<br>"
             
             mensaje += "\n👉 *Haz clic en el nombre para ver más detalles.*"
             return mensaje
@@ -230,6 +229,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
