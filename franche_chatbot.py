@@ -92,8 +92,7 @@ def generar_respuesta(mensaje):
     if any(x in msg for x in ["1", "pasaje", "vuelo", "boleto", "hotel", "reserva"]):
         return ("✈️ **Reserva de Pasajes y Hoteles**\n\n"
                 "¡Genial! Para estas reservas necesitamos atención personalizada.\n"
-                "Por favor escribe a nuestro WhatsApp oficial para que un asesor te atienda:\n"
-                "👉 [Clic aquí para chatear con un asesor](https://wa.me/51999999999)")
+                "[Por favor escribenos y nos pondremos en contacto en breve](https://viajoconfranche.com/contacto/)"
 
     # --- OPCIÓN 2 y 5: TOURS Y PROMOCIONES ---
     if any(x in msg for x in ["2", "5", "tour", "full day", "viaje", "promocion", "oferta"]):
@@ -103,7 +102,7 @@ def generar_respuesta(mensaje):
     if any(x in msg for x in ["3", "asesor", "humano", "persona", "ayuda humana"]):
         return ("💬 **Conectando con un asesor...**\n\n"
                 "Nuestros expertos están listos para ayudarte en WhatsApp para una atención más rápida:\n"
-                "👉 [Hablar con Asesor en WhatsApp](https://wa.me/51999999999)")
+                "👉 [Hablar con Asesor en WhatsApp](https://wa.me/51921652108)")
 
     # --- OPCIÓN 4: REDES SOCIALES ---
     if any(x in msg for x in ["4", "redes", "facebook", "instagram", "tiktok", "social"]):
@@ -120,7 +119,7 @@ def generar_respuesta(mensaje):
                 "URB. ENTEL, San Juan De Miraflores, Lima.\n\n"
                 "🕒 **Horario de atención:**\n"
                 "10:00 AM - 6:00 PM (Lunes a Domingo)\n\n"
-                "📌 [Ver en Google Maps](https://goo.gl/maps/TU_ENLACE_AQUI)")
+                "📌 [Ver en Google Maps](https://maps.app.goo.gl/iFPSHkLnj8H3E9Y26)")
 
     # --- PAQUETE INTERNACIONAL ---
     if "paquete internacional" in msg:
@@ -213,6 +212,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
