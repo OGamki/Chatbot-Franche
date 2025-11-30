@@ -142,7 +142,7 @@ def generar_respuesta(mensaje):
         return "👋 ¡Hola! Bienvenido a Franche Travel. ¿En qué puedo ayudarte hoy?\nEscribe **'menu'** para ver las opciones."
 
     # --- MENÚ DE AYUDA (Opción por defecto) ---
-    return """🤖 **MENÚ PRINCIPAL**
+    return """ **MENÚ PRINCIPAL**
     
     1️⃣ Reservar pasajes o hoteles ✈️🏨
     2️⃣ Ver tours y full days (Tienda) 🎒
