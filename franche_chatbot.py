@@ -154,10 +154,15 @@ def generar_respuesta(mensaje):
     return """ **MENÚ PRINCIPAL**
     
     1️⃣ Reservar pasajes o hoteles ✈️🏨
+    
     2️⃣ Ver tours y full days (Tienda) 🎒
+    
     3️⃣ Hablar con un asesor 💬
+    
     4️⃣ Redes sociales 🌐
+    
     5️⃣ Ver promociones 🎁
+    
     6️⃣ Dirección y horario 📍
     
     👇 Escribe el número de la opción o tu pregunta:"""
@@ -208,6 +213,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
