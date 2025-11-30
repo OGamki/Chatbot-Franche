@@ -102,7 +102,7 @@ def generar_respuesta(mensaje):
     if any(x in msg for x in ["3", "asesor", "humano", "persona", "ayuda humana"]):
         return ("💬 **Conectando con un asesor...**\n\n"
                 "Nuestros expertos están listos para ayudarte en WhatsApp para una atención más rápida:\n"
-                "👉 [Hablar con un asesor en WhatsApp](https://wa.me/51921652108)")
+                "👉 [Hablar con un asesor en WhatsApp](https://wa.me/51921652108?text=Hola,%20quiero%20información)")
 
     # --- OPCIÓN 4: REDES SOCIALES ---
     if any(x in msg for x in ["4", "redes", "facebook", "instagram", "tiktok", "social"]):
@@ -229,6 +229,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
