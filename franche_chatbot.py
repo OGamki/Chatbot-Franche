@@ -4,9 +4,11 @@ import time
 import random
 
 # ---------------------------------------------------------
-# 1. CONFIGURACIÓN DE LA PÁGINA
+# 1. CONFIGURACIÓN DE LA PÁGINA Y OCULTAR MARCA DE AGUA
 # ---------------------------------------------------------
 st.set_page_config(page_title="Franche Travel Bot", page_icon="✈️")
+
+# ESTE ES EL CÓDIGO QUE BORRA LA PARTE DE ABAJO Y ARRIBA
 hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -23,6 +25,8 @@ st.markdown(hide_st_style, unsafe_allow_html=True)
 def conectar_woocommerce():
     return API(
         url="https://viajoconfranche.com",
+        # ¡OJO! He ocultado tus claves por seguridad. 
+        # Vuelve a pegar las tuyas reales aquí abajo:
         consumer_key="ck_a96e205ae6ea3c7ce04739c9d81aaa95188bb7d2", 
         consumer_secret="cs_9d124ef703d7952dc62727bf029e9ad0288c0646",
         version="wc/v3",
@@ -61,7 +65,7 @@ def obtener_tours_reales():
         return f"❌ Error técnico al buscar tours: {str(e)}"
 
 # ---------------------------------------------------------
-# 3. CEREBRO DEL BOT (TODAS TUS RESPUESTAS)
+# 3. CEREBRO DEL BOT (RESPUESTAS)
 # ---------------------------------------------------------
 def generar_respuesta(mensaje):
     msg = mensaje.lower().strip()
@@ -73,7 +77,7 @@ def generar_respuesta(mensaje):
                 "Por favor escribe a nuestro WhatsApp oficial para que un asesor te atienda:\n"
                 "👉 [Clic aquí para chatear con un asesor](https://wa.me/51999999999)")
 
-    # --- OPCIÓN 2 y 5: TOURS Y PROMOCIONES (Conexión WooCommerce) ---
+    # --- OPCIÓN 2 y 5: TOURS Y PROMOCIONES ---
     if any(x in msg for x in ["2", "5", "tour", "full day", "viaje", "promocion", "oferta"]):
         return obtener_tours_reales()
 
@@ -100,7 +104,7 @@ def generar_respuesta(mensaje):
                 "10:00 AM - 6:00 PM (Lunes a Domingo)\n\n"
                 "📌 [Ver en Google Maps](https://goo.gl/maps/TU_ENLACE_AQUI)")
 
-    # --- PAQUETE INTERNACIONAL (De tu código original) ---
+    # --- PAQUETE INTERNACIONAL ---
     if "paquete internacional" in msg:
         return ("📦 **El Paquete Internacional incluye:**\n"
                 "* Pasaje Aéreo ✈️\n"
@@ -185,6 +189,4 @@ if prompt := st.chat_input("Escribe aquí..."):
     # 3. Mostrar bot
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
-
         st.markdown(respuesta_bot)
-
