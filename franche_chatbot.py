@@ -10,15 +10,28 @@ st.set_page_config(page_title="Franche Travel Bot", page_icon="✈️")
 
 hide_st_style = """
 <style>
+    /* Ocultar menú principal (hamburguesa) */
     #MainMenu {visibility: hidden !important; display: none !important;}
+    
+    /* Ocultar pie de página (footer) */
     footer {visibility: hidden !important; display: none !important;}
+    
+    /* Ocultar barra de decoración superior */
     header {visibility: hidden !important; display: none !important;}
+    
+    /* Ocultar botón de 'Deploy' */
     .stAppDeployButton {display: none !important;}
-    [data-testid="stHeader"] {display: none !important;}
-    [data-testid="stToolbar"] {display: none !important;}
+    
+    /* Ocultar barra de herramientas en móviles */
+    [data-testid="stToolbar"] {visibility: hidden !important; display: none !important;}
+    
+    /* Ocultar la decoración de colores de Streamlit */
+    [data-testid="stDecoration"] {visibility: hidden !important; display: none !important;}
+    
+    /* Quitar espacios en blanco extra arriba */
     .block-container {
-        padding-top: 0rem !important;
-        padding-bottom: 0rem !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
     }
 </style>
 """
@@ -195,6 +208,7 @@ if prompt := st.chat_input("Escribe aquí..."):
     st.session_state.messages.append({"role": "assistant", "content": respuesta_bot})
     with st.chat_message("assistant"):
         st.markdown(respuesta_bot)
+
 
 
 
